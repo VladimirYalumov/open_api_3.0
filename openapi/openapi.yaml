@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: REST API
+  contact:
+    name: Владимир
+    email: vladimir.ylmv@gmail.com
+servers:
+  - url: 'https://example.com/v1.0'
+    description: Live Server
+tags:
+  - name: Раздел
+    description: |
+      API для портала КиноПоиск
+security:
+  - SecretApiKey: []
+  - JWT: []
+paths:
+  /top:
+    $ref: ./paths/top.yaml
+  /getserial{id}:
+    $ref: ./paths/serial.yaml
+  /getepisode/{id}:
+    $ref: ./paths/getepisode.yaml
+  /addmark/{id}:
+    $ref: ./paths/addmark.yaml
+  /auth:
+    $ref: ./paths/auth.yaml
+  /register:
+    $ref: ./paths/createuser.yaml
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

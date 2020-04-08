@@ -1,0 +1,10 @@
+apiDefinitions:
+  main: openapi/openapi.yaml
+lint:
+  rules:
+    no-unused-schemas: warning
+referenceDocs:
+  showConsole: true
+  layout:
+    scope: section
+  htmlTemplate: ./web/index.html

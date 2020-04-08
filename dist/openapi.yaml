@@ -1,0 +1,293 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: REST API
+  contact:
+    name: Владимир
+    email: vladimir.ylmv@gmail.com
+servers:
+  - url: 'https://example.com/v1.0'
+    description: Live Server
+tags:
+  - name: Раздел
+    description: |
+      API для портала КиноПоиск
+security:
+  - SecretApiKey: []
+  - JWT: []
+paths:
+  /top:
+    get:
+      summary: Топ
+      description: Запрос на получение топа сериалов по просмотрам среди новинок
+      responses:
+        '200':
+          description: OK
+          content:
+            applications/json:
+              schema:
+                properties:
+                  top:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        film:
+                          type: string
+                          example: Game of Thrones
+        '400':
+          description: Bad request
+          content:
+            applications/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      error:
+                        type: string
+                        example: Bad request
+  '/getserial{id}':
+    get:
+      summary: Подкасты
+      description: Запрос на получение сериала
+      parameters:
+        - name: id
+          in: path
+          description: Episode ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            applications/json:
+              schema:
+                properties:
+                  series:
+                    type: array
+                    description: Список всех серий
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Эпическое название
+  '/getepisode/{id}':
+    get:
+      summary: Серия
+      description: Запрос на получение одной серии сериала
+      tags:
+        - Film
+      parameters:
+        - name: id
+          in: path
+          description: Film ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                properties:
+                  Film:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        format: int64
+                      name:
+                        type: string
+                    required:
+                      - id
+                      - name
+                  Series:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Game of thrones
+                        episode:
+                          type: array
+                          example: 1.12
+  '/addmark/{id}':
+    parameters:
+      - $ref: '#/components/parameters/organizationId'
+    post:
+      summary: Добавить оценку фильма
+      description: Добавить оценку фильма от 1 до 10
+      tags:
+        - Mark
+      security:
+        - bearerAuth: []
+      operationId: addMark
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                mark:
+                  type: integer
+              example:
+                id: 10
+                name: The Boys
+                mark: 8
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  markfilmuserID:
+                    type: integer
+                    example: 423423
+  /auth:
+    post:
+      summary: JWT токен
+      description: Выдаёт токен пользавтелю для осуществления операций
+      tags:
+        - Auth
+      security: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                email:
+                  type: string
+                  example: stelmistery@yandex.ru
+                password:
+                  type: string
+                  example: 123qwerty123
+      responses:
+        '200':
+          headers:
+            Api-Token:
+              $ref: '#/components/headers/Api-Token'
+          description: OK
+          content:
+            applications/json:
+              schema:
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+        '422':
+          description: Ошибка авторизации
+          content:
+            application/json:
+              schema:
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+                          example: Не указан Email
+                      password:
+                        type: array
+                        items:
+                          type: string
+                          example: Не указан пароль
+    x-components:
+      headers:
+        Api-Token: &ref_1
+          schema:
+            type: string
+            example: 9f34dd3a-ff8d-43aa-b286-9f22555319f6
+      schemas:
+        User: &ref_0
+          type: object
+          properties:
+            id:
+              type: string
+              example: 41
+            name:
+              type: string
+              example: Владосик Владосик
+            email:
+              type: string
+              example: Владосик@маил.ру
+  /register:
+    post:
+      summary: Регистрация пользователя
+      description: Регестрирует пользователя в системе
+      tags:
+        - Auth
+      security: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: stelmistery@yandex.ru
+                password:
+                  type: string
+                  example: 123qwerty123
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: Vladosik
+                      email:
+                        type: string
+                        example: Vladosik@mail.ru
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ResourceId:
+      type: string
+      description: Токен
+      maxLength: 50
+      example: 4f6cf35x-2c4y-483z-a0a9-158621f77a21
+    User: *ref_0
+  parameters:
+    organizationId:
+      name: User token
+      in: header
+      description: Токен пользователя на чьих правах добавляется сполнитель
+      schema:
+        $ref: '#/components/schemas/ResourceId'
+      required: false
+  headers:
+    Api-Token: *ref_1

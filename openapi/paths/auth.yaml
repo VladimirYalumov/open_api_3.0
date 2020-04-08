@@ -1,0 +1,68 @@
+post:
+  summary: "JWT токен"
+  description: 'Выдаёт токен пользавтелю для осуществления операций'
+  tags: ['Auth']
+  security: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          properties:
+            email:
+              type: string
+              example: "stelmistery@yandex.ru"
+            password:
+              type: string
+              example: "123qwerty123"
+  responses:
+    "200":
+      headers: 
+        Api-Token:
+          $ref: "#/x-components/headers/Api-Token"
+      description: OK
+      content:
+        applications/json:
+          schema:
+            properties:
+              user:
+                $ref: "#/x-components/schemas/User"
+    '422':
+      description: "Ошибка авторизации"
+      content:
+        application/json:
+         schema:
+            properties:
+              errors:
+                type: object
+                properties:
+                  email:
+                    type: array
+                    items:
+                      type: string
+                      example: "Не указан Email"
+                  password:
+                    type: array
+                    items:
+                      type: string
+                      example: "Не указан пароль"
+
+x-components:
+  headers:
+    Api-Token:
+      schema:
+        type: string
+        example: "9f34dd3a-ff8d-43aa-b286-9f22555319f6"
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 41
+        name:
+          type: string
+          example: "Владосик Владосик"
+        email:
+          type: string
+          example: "Владосик@маил.ру"

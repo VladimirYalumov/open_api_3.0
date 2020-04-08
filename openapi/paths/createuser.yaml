@@ -1,0 +1,34 @@
+post:
+  summary: "Регистрация пользователя"
+  description: 'Регестрирует пользователя в системе'
+  tags: ['Auth']
+  security: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+              example: "stelmistery@yandex.ru"
+            password:
+              type: string
+              example: "123qwerty123"
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              user:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "Vladosik"
+                  email:
+                    type: string
+                    example: "Vladosik@mail.ru"

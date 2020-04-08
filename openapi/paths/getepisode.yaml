@@ -1,0 +1,45 @@
+get:
+  summary: "Серия"
+  description: "Запрос на получение одной серии сериала"
+  tags:
+    - Film
+  parameters:
+      - name: id
+        in: path
+        description: Film ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            properties:
+              Film:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    format: int64
+                  name:
+                    type: string
+                required:
+                  - id
+                  - name
+              Series:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: 'Game of thrones'
+                    episode:
+                      type: array
+                      example: 1.12

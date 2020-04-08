@@ -1,0 +1,30 @@
+get:
+  summary: "Подкасты"
+  description: "Запрос на получение сериала"
+  parameters:
+    - name: id
+      in: path
+      description: Episode ID
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    '200':
+      description: OK
+      content:
+        applications/json:
+          schema:
+            properties:
+              series:
+                type: array
+                description: "Список всех серий"
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name: 
+                      type: string
+                      example: 'Эпическое название'

@@ -1,0 +1,42 @@
+get:
+  summary: "Топ"
+  description: "Запрос на получение топа сериалов по просмотрам среди новинок"
+  responses:
+    '200':
+      description: OK
+      content:
+        applications/json:
+          schema:
+            properties:
+              top:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    film:
+                      type: string
+                      example: 'Game of Thrones'
+    '400':
+      description: 'Bad request'
+      content:
+        applications/json:
+          schema:
+            properties:
+              errors:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Bad request"
+
+      
+                    
+
+
+
+
+
+

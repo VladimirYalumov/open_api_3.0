@@ -1,0 +1,7 @@
+name: User token
+in: header
+description: >-
+  Токен пользователя на чьих правах добавляется сполнитель
+schema:
+  $ref: ../schemas/ResourceId.yaml
+required: false

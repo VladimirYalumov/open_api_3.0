@@ -1,0 +1,44 @@
+parameters:
+  - $ref: ../components/parameters/organizationId.yaml
+
+post:
+  summary: "Добавить оценку фильма"
+  description: "Добавить оценку фильма от 1 до 10"
+  tags:
+    - Mark
+  security: 
+  - bearerAuth: []
+  operationId: addMark
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+            mark:
+              type: integer
+          example:   
+            id: 10
+            name: The Boys
+            mark: 8
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+         schema:
+            properties:
+              markfilmuserID:
+                type: integer
+                example: 423423
+
+# components:
+#   securitySchemes:
+#     bearerAuth:
+#       type: http
+#       scheme: bearer
+#       bearerFormat: JWT
