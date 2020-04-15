@@ -18,7 +18,7 @@ security:
 paths:
   /top:
     $ref: ./paths/top.yaml
-  /getepisode{id}:
+  /getepisode/{id}:
     $ref: ./paths/episode.yaml
   /getfilm/{id}:
     $ref: ./paths/film.yaml

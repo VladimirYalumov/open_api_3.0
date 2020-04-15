@@ -41,5 +41,5 @@ get:
                       type: string
                       example: 'Game of thrones'
                     episode:
-                      type: real
-                      example: 1.12
+                      type: number
+                      example: 1,12

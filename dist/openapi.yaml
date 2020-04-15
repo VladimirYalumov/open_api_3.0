@@ -50,7 +50,7 @@ paths:
                       error:
                         type: string
                         example: Bad request
-  '/getepisode{id}':
+  '/getepisode/{id}':
     get:
       summary: Серия
       description: Запрос на получение серии
@@ -71,15 +71,12 @@ paths:
             applications/json:
               schema:
                 properties:
-                  series:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                        example: 1
-                      name:
-                        type: string
-                        example: Эпическое название
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: Эпическое название
   '/getfilm/{id}':
     get:
       summary: Сериал
@@ -124,8 +121,8 @@ paths:
                           type: string
                           example: Game of thrones
                         episode:
-                          type: array
-                          example: 1.12
+                          type: number
+                          example: '1,12'
   '/addmark/{id}':
     parameters:
       - $ref: '#/components/parameters/organizationId'
