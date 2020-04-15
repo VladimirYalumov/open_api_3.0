@@ -52,8 +52,10 @@ paths:
                         example: Bad request
   '/getepisode{id}':
     get:
-      summary: Получить серию
+      summary: Серия
       description: Запрос на получение серии
+      tags:
+        - Film
       parameters:
         - name: id
           in: path
@@ -80,8 +82,8 @@ paths:
                         example: Эпическое название
   '/getfilm/{id}':
     get:
-      summary: Серия
-      description: Запрос на получение одной серии сериала
+      summary: Сериал
+      description: Запрос на получение всех серий сериала
       tags:
         - Film
       parameters:
