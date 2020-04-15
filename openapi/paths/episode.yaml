@@ -1,6 +1,8 @@
 get:
   summary: "Серия"
   description: "Запрос на получение серии"
+  tags:
+    - Film
   parameters:
     - name: id
       in: path
