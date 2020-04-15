@@ -28,7 +28,7 @@ post:
                 properties:
                   name:
                     type: string
-                    example: "Vladosik"
+                    example: "Yalimov"
                   email:
                     type: string
-                    example: "Vladosik@mail.ru"
+                    example: "vladimir.ylmv@gmail.com"

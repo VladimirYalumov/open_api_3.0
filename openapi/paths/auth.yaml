@@ -62,7 +62,7 @@ x-components:
           example: 41
         name:
           type: string
-          example: "Владосик Владосик"
+          example: "Ялымов"
         email:
           type: string
-          example: "Владосик@маил.ру"
+          example: "Ялымов.com"
