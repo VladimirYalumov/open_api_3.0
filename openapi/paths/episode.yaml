@@ -1,6 +1,6 @@
 get:
-  summary: "Подкасты"
-  description: "Запрос на получение сериала"
+  summary: "Серия"
+  description: "Запрос на получение серии"
   parameters:
     - name: id
       in: path
@@ -17,9 +17,6 @@ get:
           schema:
             properties:
               series:
-                type: array
-                description: "Список всех серий"
-                items:
                   type: object
                   properties:
                     id:

@@ -18,10 +18,10 @@ security:
 paths:
   /top:
     $ref: ./paths/top.yaml
-  /getserial{id}:
-    $ref: ./paths/serial.yaml
-  /getepisode/{id}:
-    $ref: ./paths/getepisode.yaml
+  /getepisode{id}:
+    $ref: ./paths/episode.yaml
+  /getfilm/{id}:
+    $ref: ./paths/film.yaml
   /addmark/{id}:
     $ref: ./paths/addmark.yaml
   /auth:

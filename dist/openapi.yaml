@@ -50,10 +50,10 @@ paths:
                       error:
                         type: string
                         example: Bad request
-  '/getserial{id}':
+  '/getepisode{id}':
     get:
-      summary: Подкасты
-      description: Запрос на получение сериала
+      summary: Получить серию
+      description: Запрос на получение серии
       parameters:
         - name: id
           in: path
@@ -70,18 +70,15 @@ paths:
               schema:
                 properties:
                   series:
-                    type: array
-                    description: Список всех серий
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1
-                        name:
-                          type: string
-                          example: Эпическое название
-  '/getepisode/{id}':
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: Эпическое название
+  '/getfilm/{id}':
     get:
       summary: Серия
       description: Запрос на получение одной серии сериала
@@ -228,10 +225,10 @@ paths:
               example: 41
             name:
               type: string
-              example: Владосик Владосик
+              example: Ялымов
             email:
               type: string
-              example: Владосик@маил.ру
+              example: Ялымов.com
   /register:
     post:
       summary: Регистрация пользователя
@@ -264,10 +261,10 @@ paths:
                     properties:
                       name:
                         type: string
-                        example: Vladosik
+                        example: Yalimov
                       email:
                         type: string
-                        example: Vladosik@mail.ru
+                        example: vladimir.ylmv@gmail.com
 components:
   securitySchemes:
     bearerAuth:

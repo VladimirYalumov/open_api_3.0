@@ -1,6 +1,6 @@
 get:
-  summary: "Серия"
-  description: "Запрос на получение одной серии сериала"
+  summary: "Сериал"
+  description: "Запрос на получение всех серий сериала"
   tags:
     - Film
   parameters:
