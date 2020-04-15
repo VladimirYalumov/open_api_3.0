@@ -18,12 +18,9 @@ get:
         applications/json:
           schema:
             properties:
-              series:
-                  type: object
-                  properties:
-                    id:
-                      type: integer
-                      example: 1
-                    name: 
-                      type: string
-                      example: 'Эпическое название'
+              id:
+                type: integer
+                example: 1
+              name:
+                type: string
+                example: 'Эпическое название'
