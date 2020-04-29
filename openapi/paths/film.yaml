@@ -42,4 +42,4 @@ get:
                       example: 'Game of thrones'
                     episode:
                       type: number
-                      example: 1,12
+                      example: 1.12

@@ -1,0 +1,39 @@
+post:
+  summary: "Добавить серию"
+  description: "Добавить серию с указание id сериала, если сериал не существует то он создастся с одной серией"
+  security:
+    - bearerAuth: []
+  operationId: addFilm
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            number:
+              type: number
+            film_id:
+              type: integer
+            name:
+              type: string
+          example:
+            number: 10.1
+            film_id: 8
+            name: '5 серия'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            properties:
+              message:
+                type: string
+                example: "OK"
+
+# components:
+#   securitySchemes:
+#     bearerAuth:
+#       type: http
+#       scheme: bearer
+#       bearerFormat: JWT

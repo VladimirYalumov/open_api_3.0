@@ -24,6 +24,8 @@ paths:
     $ref: ./paths/film.yaml
   /addmark/{id}:
     $ref: ./paths/addmark.yaml
+  /addepisode/{id}:
+      $ref: ./paths/addepisode.yaml
   /auth:
     $ref: ./paths/auth.yaml
   /register:

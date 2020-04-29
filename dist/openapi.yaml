@@ -72,8 +72,8 @@ paths:
               schema:
                 properties:
                   id:
-                    type: integer
-                    example: 1
+                    type: number
+                    example: 1.2
                   name:
                     type: string
                     example: Эпическое название
@@ -122,7 +122,7 @@ paths:
                           example: Game of thrones
                         episode:
                           type: number
-                          example: '1,12'
+                          example: 1.12
   '/addmark/{id}':
     parameters:
       - $ref: '#/components/parameters/organizationId'
@@ -157,9 +157,44 @@ paths:
             application/json:
               schema:
                 properties:
-                  markfilmuserID:
-                    type: integer
-                    example: 423423
+                  message:
+                    type: string
+                    example: OK
+  /addepisode/:
+    post:
+      summary: Добавить серию
+      description: >-
+        Добавить серию с указание id сериала, если сериал не существует то он
+        создастся с одной серией
+      security:
+        - bearerAuth: []
+      operationId: addFilm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: number
+                film_id:
+                  type: integer
+                name:
+                  type: string
+              example:
+                id: 10.1
+                film_id: 8
+                name: 5 серия
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  message:
+                    type: string
+                    example: OK
   /auth:
     post:
       summary: JWT токен

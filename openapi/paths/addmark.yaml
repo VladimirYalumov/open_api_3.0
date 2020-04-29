@@ -17,13 +17,10 @@ post:
           properties:
             id:
               type: integer
-            name:
-              type: string
             mark:
               type: integer
           example:   
             id: 10
-            name: The Boys
             mark: 8
   responses:
     '200':
@@ -32,9 +29,9 @@ post:
         application/json:
          schema:
             properties:
-              markfilmuserID:
-                type: integer
-                example: 423423
+              message:
+                type: string
+                example: "OK"
 
 # components:
 #   securitySchemes:
